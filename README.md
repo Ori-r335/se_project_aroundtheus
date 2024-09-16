@@ -17,6 +17,7 @@ At the end of the site there is a copyright watermark.
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
 **technologies and techniques**
+
 For the profile info and cards section I use grid layout to adjust the sizes for each area and column. In the profile info i used "grid-template-areas" to specify every area in the grid and place it where it belongs.
 
 In the cards grid layout I arranged all columns to be the same size no matter how many cards will be added in the future and added gaps so the cards will have have space between them.
@@ -30,4 +31,4 @@ I used responsive design to adjust the website for different screen sizes so for
 
 For every clickable button there is a hover state that's changing the opacity of the buttons.
 
-- [GitHub page link](ori-r335.github.io)
+- [GitHub page link](https://ori-r335.github.io/se_project_aroundtheus/)
