@@ -32,3 +32,5 @@ I used responsive design to adjust the website for different screen sizes so for
 For every clickable button there is a hover state that's changing the opacity of the buttons.
 
 - [GitHub page link](https://ori-r335.github.io/se_project_aroundtheus/)
+
+- [Video link](https://drive.google.com/file/d/1Uu5vElATqZ-dzKMlaSFhUidruPmNRXQS/view?usp=sharing)
