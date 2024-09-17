@@ -41,5 +41,5 @@
 }
 
 .card__like-button:hover {
-  background: url(../images/heart-change.svg) transparent center no-repeat;
+  opacity: 0.5;
 }
