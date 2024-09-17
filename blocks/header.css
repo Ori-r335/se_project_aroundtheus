@@ -1,6 +1,6 @@
 .header {
   margin-top: 45px;
-  height: 74px;
+  min-height: 74px;
 }
 
 .header__logo {

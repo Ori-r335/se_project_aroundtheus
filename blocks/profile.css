@@ -19,19 +19,21 @@
     "subtitle subtitle";
   grid-template-columns: minmax(auto, 373px) auto;
   align-items: center;
+  column-gap: 18px;
 }
 
 .profile__title {
   margin: 0;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   grid-area: title;
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 48px;
+  white-space: nowrap;
 }
 
 .profile__edit-button {
-  background: transparent;
+  background: url(../images/pencil.svg) transparent center no-repeat;
   width: 24px;
   height: 24px;
   grid-area: button;
@@ -40,15 +42,11 @@
   border-style: solid;
   opacity: 100%;
   cursor: pointer;
+  border-width: medium;
 }
 
 .profile__edit-button:hover {
   opacity: 60%;
-}
-
-.profile__edit-button_image {
-  width: 10px;
-  height: 10px;
 }
 
 .profile__subtitle {
@@ -60,12 +58,8 @@
   line-height: 22px;
 }
 
-.profile__add-button_image {
-  width: 22px;
-  height: 22px;
-}
 .profile__add-button {
-  background: transparent;
+  background: url(../images/plus.svg) transparent center no-repeat;
   width: 150px;
   height: 50px;
   margin-left: auto;
@@ -74,6 +68,8 @@
   border-style: solid;
   opacity: 100%;
   cursor: pointer;
+  border-width: medium;
+  border-radius: 2px;
 }
 
 .profile__add-button:hover {
@@ -83,7 +79,6 @@
 @media screen and (max-width: 750px) {
   .profile__add-button {
     width: 50px;
-    height: 50px;
   }
 }
 
@@ -98,22 +93,21 @@
   }
 
   .profile {
-    display: flex;
-    align-items: center;
     flex-direction: column;
   }
+
   .profile__info {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
-    column-gap: 10px;
-    row-gap: 14px;
     padding-top: 30px;
+    row-gap: 14px;
   }
 
   .profile__title {
     font-size: 22px;
+    line-height: 26px;
     justify-content: center;
   }
 
@@ -122,5 +116,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 14px;
+    line-height: 17px;
   }
 }

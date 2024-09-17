@@ -1,5 +1,5 @@
 .footer {
-  padding: 67px 0 60px 0; /* chanfe in media qury */
+  padding: 67px 0 60px 0;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -8,7 +8,18 @@
 .footer__copyright {
   font-size: 18px;
   font-weight: 400;
-  line-height: 0.8;
+  line-height: 22px;
   color: #545454;
   margin: 0;
+}
+
+@media screen and (max-width: 650px) {
+  .footer {
+    padding: 48px 0 36px 0;
+  }
+
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
