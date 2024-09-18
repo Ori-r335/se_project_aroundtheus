@@ -118,9 +118,7 @@
 
   .profile__subtitle {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     font-size: 14px;
     line-height: 17px;
     max-width: 282px;
