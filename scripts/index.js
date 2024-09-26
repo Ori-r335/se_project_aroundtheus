@@ -1,32 +1,32 @@
 const initialCards = [
   {
     name: "Yosemite Valley",
-    link: "practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
   },
 
   {
     name: "Lake Louise",
-    link: "practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
   },
 
   {
     name: "Bald Mountains",
-    link: "practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
   },
 
   {
     name: "Latemar",
-    link: "practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
   },
 
   {
     name: "Vanoise National Park",
-    link: "practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
   },
 
   {
     name: "Lago di Braies",
-    link: "practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
 
@@ -39,6 +39,9 @@ const profileSubtitle = profileSection.querySelector('.profile__subtitle');
 const inputName = profileEditModal.querySelector('#name');
 const inputSubtitle = profileEditModal.querySelector('#subtitle');
 const profileFormSubmit = profileEditModal.querySelector('.modal__form');
+const cardList = document.querySelector(".cards__list");
+const Template = document.querySelector("#card-template").content;
+const cardTemplate = Template.querySelector(".card");
 
 
 
@@ -67,4 +70,21 @@ profileFormSubmit.addEventListener('submit', handleFormSubmit);
    closePopup()
   }
   
+
+function getCardElement (data){
+   
+  const cardElement = cardTemplate.cloneNode(true);  
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+  
+  cardImage.src = data.link;  
+  cardImage.alt = "Profile added image ";
+  cardTitle.textContent = data.name;
+  return cardElement;
+}
+
+initialCards.forEach((data)=>{
+    const cardElement = getCardElement(data);
+    cardList.append(cardElement);
+});
 

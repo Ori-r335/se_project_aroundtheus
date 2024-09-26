@@ -80,6 +80,10 @@
   margin-top: 18px;
 }
 
+.modal__button:hover{
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 @media screen and (max-width: 650px) {
   .modal {
     padding: 0 19px;
