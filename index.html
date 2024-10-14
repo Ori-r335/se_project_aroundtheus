@@ -32,8 +32,8 @@
               class="profile__edit-button"
               aria-label="Edit profile info"
               type="button"
-              ></button>
-              <p class="profile__subtitle">Explorer</p>
+            ></button>
+            <p class="profile__subtitle">Explorer</p>
           </div>
           <button
             class="profile__add-button"
@@ -42,16 +42,15 @@
           ></button>
         </section>
         <section class="cards page__section">
-          <ul class="cards__list">
-
-          </ul>
+          <ul class="cards__list"></ul>
         </section>
       </main>
       <footer class="footer page__section">
         <p class="footer__copyright">&copy; 2022 Around The U.S.</p>
       </footer>
     </div>
-    <div class="modal">
+    <!-- Edit profile modal -->
+    <div class="modal" id="modal-edit">
       <div class="modal__container">
         <button
           class="modal__close-button"
@@ -59,7 +58,7 @@
           type="button"
         ></button>
         <p class="modal__title">Edit profile</p>
-        <form class="modal__form" id="modal-form">
+        <form class="modal__form" id="modal-form-edit">
           <input
             type="text"
             class="modal__input"
@@ -79,13 +78,38 @@
       </div>
     </div>
 
+    <!-- Add profile modal -->
+    <div class="modal" id="modal-add">
+      <div class="modal__container">
+        <button
+          class="modal__close-button"
+          aria-label="x button"
+          type="button"
+        ></button>
+        <p class="modal__title">New place</p>
+        <form class="modal__form" id="modal-form-add">
+          <input
+            type="text"
+            class="modal__input"
+            id="name"
+            placeholder="Title"
+            required
+          />
+          <input
+            type="text"
+            class="modal__input"
+            id="subtitle"
+            placeholder="Image link"
+            required
+          />
+          <button type="submit" class="modal__button">Create</button>
+        </form>
+      </div>
+    </div>
+
     <template id="card-template">
       <li class="card">
-        <img
-          src=""
-          alt=""
-          class="card__image"
-        />
+        <img src="" alt="" class="card__image" />
         <div class="card__subject">
           <h2 class="card__title"></h2>
           <button
