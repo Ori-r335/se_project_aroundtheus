@@ -54,6 +54,10 @@ const profileFormSubmitEdit =
   profileModalEdit.querySelector("#modal-form-edit");
 const profileFormSubmitAdd = profileModalAdd.querySelector("#modal-form-add");
 
+//text data in add form
+const inputTitleAdd = profileFormSubmitAdd.querySelector("#add-title");
+const inputUrlAdd = profileFormSubmitAdd.querySelector("#image-url");
+
 //cards
 const cardList = document.querySelector(".cards__list");
 const template = document.querySelector("#card-template").content;
@@ -92,15 +96,36 @@ addCloseBtn.addEventListener("click", () => {
 });
 
 // submit of edit form :
-profileFormSubmitEdit.addEventListener("submit", handleFormSubmit);
+profileFormSubmitEdit.addEventListener("submit", handleFormSubmitEdit);
+profileFormSubmitAdd.addEventListener("submit", handleFormSubmitAdd);
 
 //-------------------------------------------------------//
 
-function handleFormSubmit(evt) {
+//EDIT submit function
+function handleFormSubmitEdit(evt) {
   evt.preventDefault();
   profileName.textContent = inputName.value;
   profileSubtitle.textContent = inputSubtitle.value;
   closePopup(profileModalEdit);
+}
+
+//ADD submit function
+function renderCard(data, warraper) {
+  const cardElement = getCardElement(data);
+  //adding the card after the others
+  warraper.prepend(cardElement);
+  //bring back inputs placeholders
+  inputTitleAdd.value = inputTitleAdd.textContent;
+  inputUrlAdd.value = inputUrlAdd.textContent;
+}
+
+function handleFormSubmitAdd(evt) {
+  evt.preventDefault();
+  const name = inputTitleAdd.value;
+  const link = inputUrlAdd.value;
+  //sends the data
+  renderCard({ name, link }, cardList);
+  closePopup(profileModalAdd);
 }
 
 function getCardElement(data) {
@@ -114,7 +139,4 @@ function getCardElement(data) {
   return cardElement;
 }
 
-initialCards.forEach((data) => {
-  const cardElement = getCardElement(data);
-  cardList.append(cardElement);
-});
+initialCards.forEach((data) => renderCard(data, cardList));
