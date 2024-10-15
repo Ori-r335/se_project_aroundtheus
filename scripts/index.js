@@ -35,10 +35,8 @@ const profileModalImage = document.querySelector("#modal-image");
 const editBtnClick = document.querySelector(".profile__edit-button");
 const addNewCardBtn = document.querySelector(".profile__add-button");
 
-// close button
-const editCloseBtn = profileModalEdit.querySelector(".modal__close-button");
-const addCloseBtn = profileModalAdd.querySelector(".modal__close-button");
-const imageCloseBtn = profileModalImage.querySelector(".modal__close-button");
+// close buttonד
+const closeButtons = document.querySelectorAll(".modal__close-button");
 
 //text in the edit form
 const profileSection = document.querySelector(".profile");
@@ -58,7 +56,7 @@ const inputUrlAdd = profileFormSubmitAdd.querySelector("#image-url");
 
 //text in preview image
 const imagePreview = profileModalImage.querySelector(".card__image-preview");
-const titlePreview = profileModalImage.querySelector(".modal__title_preview");
+const titlePreview = profileModalImage.querySelector(".modal__title-preview");
 
 //cards
 const cardList = document.querySelector(".cards__list");
@@ -67,7 +65,7 @@ const cardTemplate = template.querySelector(".card");
 
 //------------------functions of forms----------------------//
 
-function modalClick(modal) {
+function openPopup(modal) {
   modal.classList.add("modal_opened");
 }
 
@@ -82,19 +80,16 @@ function closePopup(modal) {
 editBtnClick.addEventListener("click", () => {
   inputName.value = profileName.textContent;
   inputSubtitle.value = profileSubtitle.textContent;
-  modalClick(profileModalEdit);
+  openPopup(profileModalEdit);
 });
 
 addNewCardBtn.addEventListener("click", () => {
-  modalClick(profileModalAdd);
+  openPopup(profileModalAdd);
 });
 
-editCloseBtn.addEventListener("click", () => {
-  closePopup(profileModalEdit);
-});
-
-addCloseBtn.addEventListener("click", () => {
-  closePopup(profileModalAdd);
+closeButtons.forEach((button) => {
+  const popup = button.closest(".modal");
+  button.addEventListener("click", () => closePopup(popup));
 });
 
 // submit of edit form :
@@ -116,9 +111,6 @@ function renderCard(data, warraper) {
   const cardElement = getCardElement(data);
   //adding the card after the others
   warraper.prepend(cardElement);
-  //bring back inputs placeholders
-  inputTitleAdd.value = inputTitleAdd.textContent;
-  inputUrlAdd.value = inputUrlAdd.textContent;
 }
 
 function handleFormSubmitAdd(evt) {
@@ -128,6 +120,7 @@ function handleFormSubmitAdd(evt) {
   //sends the data
   renderCard({ name, link }, cardList);
   closePopup(profileModalAdd);
+  evt.target.reset();
 }
 
 function getCardElement(data) {
@@ -139,15 +132,10 @@ function getCardElement(data) {
 
   //preview image with text and alt
   cardImage.addEventListener("click", () => {
-    modalClick(profileModalImage);
+    openPopup(profileModalImage);
     imagePreview.src = data.link;
     imagePreview.alt = data.name;
     titlePreview.textContent = data.name;
-  });
-
-  //close preview image
-  imageCloseBtn.addEventListener("click", () => {
-    closePopup(profileModalImage);
   });
 
   //remove card image

@@ -33,7 +33,7 @@
   justify-content: center;
 }
 
-.modal__container_image {
+.modal__image-container {
   background: transparent;
   justify-content: center;
   position: relative;
@@ -51,7 +51,7 @@
   left: calc(100% + 5px);
 }
 
-.modal__title_preview {
+.modal__title-preview {
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-size: 12px;
   line-height: 14.52px;
