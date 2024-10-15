@@ -55,7 +55,7 @@ const inputTitleAdd = profileFormSubmitAdd.querySelector("#add-title");
 const inputUrlAdd = profileFormSubmitAdd.querySelector("#image-url");
 
 //text in preview image
-const imagePreview = profileModalImage.querySelector(".card__image-preview");
+const imagePreview = profileModalImage.querySelector(".modal__image-preview");
 const titlePreview = profileModalImage.querySelector(".modal__title-preview");
 
 //cards

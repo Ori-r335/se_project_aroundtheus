@@ -51,6 +51,12 @@
   left: calc(100% + 5px);
 }
 
+.modal__image-preview {
+  max-width: 75vw;
+  max-height: 75vh;
+  margin: 0;
+}
+
 .modal__title-preview {
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-size: 12px;
