@@ -10,6 +10,13 @@
   width: 282px;
   height: 282px;
   border-radius: 10px 10px 0 0;
+  object-fit: cover;
+}
+
+.card__image-preview {
+  max-width: 75vw;
+  max-height: 75vh;
+  margin: 0;
 }
 
 .card__subject {
@@ -31,6 +38,7 @@
   font-size: 24px;
   font-weight: 900;
   line-height: 29px;
+  max-width: 215px; /*so the text wont crop the like icon */
 }
 
 .card__like-button {
