@@ -67,10 +67,12 @@ const cardTemplate = template.querySelector(".card");
 
 function openPopup(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscape);
 }
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscape);
 }
 
 //---------------------------------------------------------//
@@ -155,3 +157,24 @@ function getCardElement(data) {
 }
 
 initialCards.forEach((data) => renderCard(data, cardList));
+
+function handleEscape(evt) {
+  if (evt.key === "Escape") {
+    const openModal = document.querySelector(".modal_opened"); // Get the currently opened modal
+    const imageModal = profileModalImage; // Image cant be closed by esc key
+    if (openModal !== imageModal) {
+      closePopup(openModal);
+    }
+  }
+}
+
+const modals = [profileModalEdit, profileModalAdd, profileModalImage];
+modals.forEach((modal) => {
+  modal.addEventListener("click", handleOverlayClick);
+});
+
+function handleOverlayClick(evt) {
+  if (evt.target.classList.contains("modal")) {
+    closePopup(evt.target);
+  }
+}

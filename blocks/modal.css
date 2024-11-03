@@ -85,10 +85,11 @@
   display: flex;
   flex-direction: column;
   width: 358px;
+  position: relative;
 }
 
 .modal__input {
-  margin: 0 0 30px;
+  /* margin: 0 0 30px; */
   border: none;
   border-bottom: 1px solid #000000;
   font-family: "Inter", Arial, Helvetica, sans-serif;
@@ -97,6 +98,8 @@
   line-height: 17px;
   padding: 0 0 13px;
   max-height: 27px;
+  margin-top: 30px;
+  padding-bottom: 13px;
 }
 
 .modal__button {
@@ -117,6 +120,34 @@
 .modal__button:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+/* Error modal */
+.modal__input-error {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 14.52px;
+  opacity: 1;
+}
+
+.modal__input_type_error {
+  border-bottom: 1px solid rgba(255, 0, 0, 1);
+}
+
+.modal__button_disabled {
+  cursor: not-allowed;
+  border: 1px solid #000000;
+  background-color: white;
+  opacity: 0.2;
+  pointer-events: none;
+  color: #000000;
+}
+
+.modal__error_visible {
+  color: red;
+  opacity: 1;
+}
+
+/* end of error modal  */
 
 @media screen and (max-width: 650px) {
   .modal {

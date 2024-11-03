@@ -58,21 +58,27 @@
           type="button"
         ></button>
         <p class="modal__title">Edit profile</p>
-        <form class="modal__form" id="modal-form-edit">
+        <form class="modal__form" id="modal-form-edit" novalidate>
           <input
             type="text"
             class="modal__input"
             id="name"
             placeholder="Name"
+            minlength="2"
+            maxlength="40"
             required
           />
+          <span class="modal__input-error" id="name-error"></span>
           <input
             type="text"
             class="modal__input"
             id="subtitle"
             placeholder="About me"
+            minlength="2"
+            maxlength="200"
             required
           />
+          <span class="modal__input-error" id="subtitle-error"></span>
           <button type="submit" class="modal__button">Save</button>
         </form>
       </div>
@@ -87,27 +93,33 @@
           type="button"
         ></button>
         <p class="modal__title">New place</p>
-        <form class="modal__form" id="modal-form-add">
+        <form class="modal__form" id="modal-form-add" novalidate>
           <input
             type="text"
             class="modal__input"
             id="add-title"
             placeholder="Title"
+            minlength="1"
+            maxlength="30"
             required
           />
+          <span class="modal__input-error" id="add-title-error"></span>
           <input
-            type="text"
+            type="url"
             class="modal__input"
             id="image-url"
             placeholder="Image link"
             required
           />
-          <button type="submit" class="modal__button">Create</button>
+          <span class="modal__input-error" id="image-url-error"></span>
+          <button type="submit" class="modal__button modal__button_disabled">
+            Create
+          </button>
         </form>
       </div>
     </div>
 
-    open image modal
+    <!-- open image modal -->
     <div class="modal" id="modal-image">
       <div class="modal__image-container">
         <button
@@ -139,5 +151,6 @@
       </li>
     </template>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
