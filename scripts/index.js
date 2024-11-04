@@ -161,8 +161,7 @@ initialCards.forEach((data) => renderCard(data, cardList));
 function handleEscape(evt) {
   if (evt.key === "Escape") {
     const openModal = document.querySelector(".modal_opened"); // Get the currently opened modal
-    const imageModal = profileModalImage; // Image cant be closed by esc key
-    if (openModal !== imageModal) {
+    if (openModal) {
       closePopup(openModal);
     }
   }

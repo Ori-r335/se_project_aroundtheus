@@ -75,7 +75,7 @@
   color: black;
   max-width: 330px;
   max-height: 23px;
-  margin: 0 0 54px;
+  margin: 0 0 24px;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-size: 24px;
   font-weight: 900;
@@ -99,7 +99,8 @@
   padding: 0 0 13px;
   max-height: 27px;
   margin-top: 30px;
-  padding-bottom: 13px;
+  /* position: relative; */
+  width: 100%;
 }
 
 .modal__button {
@@ -122,11 +123,20 @@
 }
 
 /* Error modal */
+.modal__wraper {
+  position: relative;
+  margin-bottom: 13px;
+}
+
 .modal__input-error {
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-size: 12px;
   line-height: 14.52px;
   opacity: 1;
+  position: absolute;
+  top: 100%; /* Position it just below the input field */
+  left: 0; /* Align it to the left of the input */
+  padding-top: 4px; /* Adds a bit of space above the error message */
 }
 
 .modal__input_type_error {
@@ -171,7 +181,7 @@
     max-height: 22px;
     font-size: 18px;
     line-height: 22px;
-    margin-bottom: 75px;
+    /* margin-bottom: 75px; */
   }
 
   .modal__form {

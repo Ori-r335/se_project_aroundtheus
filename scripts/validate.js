@@ -52,7 +52,7 @@ function enableValidation(options) {
       e.preventDefault();
     });
 
-    setEventListeners(formEl, config);
+    setEventListeners(formEl, options);
   });
 }
 
