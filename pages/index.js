@@ -112,9 +112,15 @@ function handleFormSubmitEdit(evt) {
   closePopup(profileModalEdit);
 }
 
-function renderCard(data, wrapper) {
+// creating a card
+function createCard(data) {
   const card = new Card(data, cardTemplateSelector, handleImageClick);
   const cardElement = card.generateCard();
+  return cardElement;
+}
+
+function renderCard(data, wrapper) {
+  const cardElement = createCard(data);
   wrapper.prepend(cardElement);
 }
 
@@ -157,7 +163,7 @@ function handleOverlayClick(evt) {
   }
 }
 
-const formElement = document.querySelectorAll(".modal__form");
+const formElements = document.querySelectorAll(".modal__form");
 const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -167,7 +173,7 @@ const config = {
   errorClass: "modal__error_visible",
 };
 
-formElement.forEach((formEl) => {
+formElements.forEach((formEl) => {
   const formValidator = new FormValidator(config, formEl);
   formValidator.enableValidation();
 });
