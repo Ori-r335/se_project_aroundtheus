@@ -1,3 +1,6 @@
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Lago di Braies",
@@ -35,7 +38,7 @@ const profileModalImage = document.querySelector("#modal-image");
 const editBtnClick = document.querySelector(".profile__edit-button");
 const addNewCardBtn = document.querySelector(".profile__add-button");
 
-// close buttonד
+// close button
 const closeButtons = document.querySelectorAll(".modal__close-button");
 
 //text in the edit form
@@ -62,6 +65,7 @@ const titlePreview = profileModalImage.querySelector(".modal__title-preview");
 const cardList = document.querySelector(".cards__list");
 const template = document.querySelector("#card-template").content;
 const cardTemplate = template.querySelector(".card");
+const cardTemplateSelector = "#card-template";
 
 //------------------functions of forms----------------------//
 
@@ -108,11 +112,17 @@ function handleFormSubmitEdit(evt) {
   closePopup(profileModalEdit);
 }
 
-//ADD submit function
-function renderCard(data, warraper) {
-  const cardElement = getCardElement(data);
-  //adding the card after the others
-  warraper.prepend(cardElement);
+function renderCard(data, wrapper) {
+  const card = new Card(data, cardTemplateSelector, handleImageClick);
+  const cardElement = card.generateCard();
+  wrapper.prepend(cardElement);
+}
+
+function handleImageClick(name, link) {
+  openPopup(profileModalImage);
+  imagePreview.src = link;
+  imagePreview.alt = name;
+  titlePreview.textContent = name;
 }
 
 function handleFormSubmitAdd(evt) {
@@ -123,37 +133,6 @@ function handleFormSubmitAdd(evt) {
   renderCard({ name, link }, cardList);
   closePopup(profileModalAdd);
   evt.target.reset();
-}
-
-function getCardElement(data) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardTitle = cardElement.querySelector(".card__title");
-  const likeActiveBtns = cardElement.querySelector(".card__like-button");
-  const deleteImageBtn = cardElement.querySelector(".card__trash-button");
-
-  //preview image with text and alt
-  cardImage.addEventListener("click", () => {
-    openPopup(profileModalImage);
-    imagePreview.src = data.link;
-    imagePreview.alt = data.name;
-    titlePreview.textContent = data.name;
-  });
-
-  //remove card image
-  deleteImageBtn.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  //activate like button
-  likeActiveBtns.addEventListener("click", () => {
-    likeActiveBtns.classList.toggle("card__like-button_active");
-  });
-
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-  cardTitle.textContent = data.name;
-  return cardElement;
 }
 
 initialCards.forEach((data) => renderCard(data, cardList));
@@ -177,3 +156,18 @@ function handleOverlayClick(evt) {
     closePopup(evt.target);
   }
 }
+
+const formElement = document.querySelectorAll(".modal__form");
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+formElement.forEach((formEl) => {
+  const formValidator = new FormValidator(config, formEl);
+  formValidator.enableValidation();
+});
