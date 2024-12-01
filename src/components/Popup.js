@@ -21,13 +21,11 @@ export default class Popup {
   }
 
   setEventListeners() {
-    // Find all close buttons specific to this popup
-    const closeButtons = this._popupElement.querySelectorAll(
+    const closeButton = this._popupElement.querySelector(
       ".modal__close-button"
     );
-    closeButtons.forEach((button) => {
-      button.addEventListener("click", () => this.close());
-    });
+
+    closeButton.addEventListener("click", () => this.close());
 
     //Close when clicking on the overlay
     this._popupElement.addEventListener("mousedown", (event) => {

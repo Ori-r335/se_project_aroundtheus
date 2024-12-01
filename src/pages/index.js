@@ -76,38 +76,37 @@ addNewCardBtn.addEventListener("click", () => {
 });
 
 //EDIT submit function
-function handleFormSubmitEdit() {
-  profileName.textContent = inputName.value;
-  profileSubtitle.textContent = inputSubtitle.value;
+function handleFormSubmitEdit(data) {
+  userInfo.setUserInfo({
+    name: data.name,
+    job: data.subtitle,
+  });
 }
 
 const cardSection = new Section(
   {
     items: initialCards,
-    renderer: (cardData) => {
-      const cardElement = createCard(cardData);
-      cardSection.addItem(cardElement);
-    },
+    renderer: renderCard,
   },
   ".cards__list"
 );
 
 cardSection.renderItems(); // Render initial cards
 
-function renderCard(data, wrapper) {
+function renderCard(data) {
   const cardElement = createCard(data);
-  wrapper.prepend(cardElement);
+  cardSection.addItem(cardElement);
 }
 
-function handleFormSubmitAdd() {
-  const cardData = { name: inputTitleAdd.value, link: inputUrlAdd.value };
-  const cardElement = createCard(cardData);
-  cardSection.addItem(cardElement); // Add to top of the list
+function handleFormSubmitAdd(inputData) {
+  const cardData = {
+    name: inputData.title,
+    link: inputData.url,
+  };
+  renderCard(cardData);
   addCardPopup.close();
   addCardPopup.formReset();
 }
-
-initialCards.forEach((data) => renderCard(data, cardList));
 
 // ---------- Functions ----------
 // Create Card Function
@@ -136,10 +135,8 @@ formElements.forEach((formEl) => {
   const formValidator = new FormValidator(config, formEl);
   const formName = formEl.getAttribute("name");
   formValidators[formName] = formValidator;
+  formValidator.enableValidation();
 });
-
-formValidators.addCardForm.enableValidation();
-formValidators.profileForm.enableValidation();
 
 // Open Profile ADD Popup
 addCardButton.addEventListener("click", () => {

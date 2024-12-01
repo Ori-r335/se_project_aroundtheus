@@ -3,7 +3,7 @@ import Popup from "./Popup.js";
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
-    this._popupElement = document.querySelector(popupSelector);
+    this._popupElement = document.querySelector(popupSelector); //if I remove this the cards disappear
     this._handleFormSubmit = handleFormSubmit;
     this._formPopup = this._popupElement.querySelector(".modal__form");
     this._inputList = this._formPopup.querySelectorAll(".modal__input");
