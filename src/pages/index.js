@@ -5,6 +5,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, config } from "../utils/Constants.js";
+import "../pages/index.css";
 
 //specifice modal selector
 const profileModalEdit = document.querySelector("#modal-edit");

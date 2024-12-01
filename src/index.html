@@ -7,14 +7,13 @@
     <meta name="author" content="Around the U.S" />
     <meta name="keywords" content="HTML, CSS, JavaScript" />
     <title>Around the U.S</title>
-    <link rel="stylesheet" href="pages/index.css" />
     <link rel="shortcut icon" href="favicon.ico" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="./images/aroundthe.svg"
+          src="<%=require('./images/aroundthe.svg')%>"
           alt="Around the U.S Logo"
           class="header__logo"
         />
@@ -22,7 +21,7 @@
       <main class="content">
         <section class="profile page__section">
           <img
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="avater"
             class="profile__avatar"
           />
@@ -168,6 +167,5 @@
         </div>
       </li>
     </template>
-    <script defer src="./pages/index.js" type="module"></script>
   </body>
 </html>
