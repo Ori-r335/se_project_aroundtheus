@@ -11,68 +11,68 @@ export default class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
-  getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
+  _request(endpoint, options = {}) {
+    const finalOptions = {
       headers: this._headers,
-    }).then((res) => this._checkResponse(res));
+      ...options,
+    };
+    const url = `${this._baseUrl}${endpoint}`;
+    return fetch(url, finalOptions).then(this._checkResponse);
+  }
+
+  getUserInfo() {
+    return this._request("/users/me");
   }
 
   editProfile(data) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return this._request("/users/me", {
       method: "PATCH",
-      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         about: data.subtitle,
       }),
-    }).then((res) => this._checkResponse(res));
+    });
   }
 
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers,
-    }).then((res) => this._checkResponse(res));
+    return this._request("/cards");
   }
 
   createCardAdd(data) {
-    //add card
-    return fetch(`${this._baseUrl}/cards`, {
+    return this._request("/cards", {
       method: "POST",
-      headers: this._headers,
       body: JSON.stringify({
         name: data.title,
         link: data.url,
       }),
-    }).then((res) => this._checkResponse(res));
+    });
   }
 
   deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    return this._request(`/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
-    }).then((res) => this._checkResponse(res));
+    });
   }
+
   likeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    return this._request(`/cards/${cardId}/likes`, {
       method: "PUT",
-      headers: this._headers,
-    }).then((res) => this._checkResponse(res));
+    });
   }
+
   dislikeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+    return this._request(`/cards/${cardId}/likes`, {
       method: "DELETE",
-      headers: this._headers,
-    }).then((res) => this._checkResponse(res));
+    });
   }
 
   editProfileAvatar(data) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return this._request(`/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
       body: JSON.stringify({
         avatar: data.url,
       }),
-    }).then((res) => this._checkResponse(res));
+    });
   }
 
   getAppInfo() {

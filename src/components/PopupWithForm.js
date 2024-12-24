@@ -2,8 +2,7 @@ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
-    super(popupSelector);
-    this._popupElement = document.querySelector(popupSelector); //if I remove this the cards disappear
+    super({ popupSelector });
     this._handleFormSubmit = handleFormSubmit;
     this._formPopup = this._popupElement.querySelector(".modal__form");
     this._inputList = this._formPopup.querySelectorAll(".modal__input");
@@ -31,7 +30,7 @@ export default class PopupWithForm extends Popup {
     this._formPopup.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
-      this.close();
+      // this.close();
     });
     super.setEventListeners();
   }

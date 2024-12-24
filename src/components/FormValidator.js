@@ -57,6 +57,9 @@ export default class FormValidator {
   disableSubmitButton() {
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.disabled = true;
+    if (this._formEl.id === "modal-form-trash") {
+      this.toggleButtonState();
+    }
   }
 
   setEventListeners() {
@@ -74,7 +77,7 @@ export default class FormValidator {
     this._formEl.addEventListener("submit", (e) => {
       e.preventDefault();
       console.log("Form submitted.");
-      // this.disableSubmitButton();
+      this.disableSubmitButton();
     });
 
     this.setEventListeners();

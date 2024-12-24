@@ -2,8 +2,7 @@ import Popup from "./Popup.js";
 
 export default class PopupWithConfirm extends Popup {
   constructor(popupSelector) {
-    super(popupSelector);
-    this._popupElement = document.querySelector(popupSelector);
+    super({ popupSelector });
     this._popupForm = this._popupElement.querySelector(".modal__form");
     this._submitButton = this._popupElement.querySelector("#save-btn");
     this._defaultButtonText = this._submitButton.textContent;

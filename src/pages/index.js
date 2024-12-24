@@ -33,16 +33,6 @@ const userInfo = new UserInfo({
   avatarSelector: ".profile__avatar",
 });
 
-//on page load we make a request to get the userinfo off the server
-api.getUserInfo().then((data) => {
-  //here we display that userinfo on the dom (visually)
-  userInfo.setUserInfo({
-    name: data.name,
-    job: data.about,
-  });
-  userInfo.setUserAvatar(data.avatar);
-});
-
 // ---------- Popups ----------
 // Profile Edit Popup
 const profileEditPopup = new PopupWithForm("#modal-edit", handleFormSubmitEdit);
@@ -60,11 +50,11 @@ imagePopup.setEventListeners();
 const deleteImagePopup = new PopupWithConfirm("#modal-trash");
 deleteImagePopup.setEventListeners();
 
-const AvatarChangePopup = new PopupWithForm(
+const avatarChangePopup = new PopupWithForm(
   "#modal-update",
   handleFormSubmitAvatar
 );
-AvatarChangePopup.setEventListeners();
+avatarChangePopup.setEventListeners();
 
 //------------------EventListeners of forms----------------//
 
@@ -85,7 +75,7 @@ addNewCardBtn.addEventListener("click", () => {
 
 // Open Profile avatar edit Popup
 avatarBtn.addEventListener("click", () => {
-  AvatarChangePopup.open();
+  avatarChangePopup.open();
 });
 
 //----------------functions------------------//
@@ -131,19 +121,19 @@ function handleFormSubmitAdd(inputData) {
 
 //AVATAR submit function
 function handleFormSubmitAvatar(inputData) {
-  AvatarChangePopup.renderLoading(true);
+  avatarChangePopup.renderLoading(true);
   api
     .editProfileAvatar(inputData) // Send the data to the server
     .then((data) => {
       userInfo.setUserAvatar(data.avatar);
-      AvatarChangePopup.close();
-      AvatarChangePopup.formReset();
+      avatarChangePopup.close();
+      avatarChangePopup.formReset();
     })
     .catch((err) => {
       console.error("Error creating card:", err);
     })
     .finally(() => {
-      AvatarChangePopup.renderLoading(false);
+      avatarChangePopup.renderLoading(false);
     });
 }
 
@@ -195,9 +185,10 @@ function handleDeleteClick(card) {
 
 // CARDS
 let cardSection;
+
 api
   .getAppInfo()
-  .then(([cards]) => {
+  .then(([cards, userData]) => {
     cardSection = new Section(
       {
         items: cards.reverse(), // Pass fetched cards to Section
@@ -207,6 +198,13 @@ api
     );
 
     cardSection.renderItems();
+
+    //here we display that userinfo on the dom (visually)
+    userInfo.setUserInfo({
+      name: userData.name,
+      job: userData.about,
+    });
+    userInfo.setUserAvatar(userData.avatar);
   })
   .catch((err) => {
     console.error("Error loading app info:", err);
