@@ -19,11 +19,15 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="avater"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-container">
+            <img class="profile__avatar" src="" alt="avatar photo" />
+            <button
+              type="button"
+              class="profile__avatar-button"
+              id="profile-avater-button"
+            ></button>
+          </div>
+          <!-- <img src="" alt="avater" name="avatar" class="profile__avatar" /> -->
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -149,6 +153,59 @@
         ></button>
         <img src="" alt="" class="modal__image-preview" />
         <p class="modal__title-preview"></p>
+      </div>
+    </div>
+
+    <!-- trash click modal -->
+    <div class="modal" id="modal-trash">
+      <div class="modal__container">
+        <form
+          class="modal__form"
+          name="trashForm"
+          id="modal-form-trash"
+          novalidate
+        >
+          <button
+            class="modal__close-button modal__close-button_preview"
+            aria-label="x button"
+            type="button"
+          ></button>
+          <p class="modal__title">Are you sure?</p>
+          <button type="submit" class="modal__button" id="save-btn">Yes</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- update profile modal -->
+    <div class="modal" id="modal-update">
+      <div class="modal__container">
+        <button
+          class="modal__close-button"
+          aria-label="x button"
+          type="button"
+        ></button>
+        <p class="modal__title">Change profile picture</p>
+        <form
+          class="modal__form"
+          name="update"
+          id="modal-form-update"
+          novalidate
+        >
+          <div class="modal__wraper">
+            <input
+              type="url"
+              class="modal__input"
+              id="profile-url"
+              name="url"
+              placeholder="Avatar URL"
+              required
+            />
+            <span class="modal__input-error" id="profile-url-error"></span>
+          </div>
+          <button type="submit" class="modal__button modal__button_disabled">
+            Save
+          </button>
+        </form>
       </div>
     </div>
 

@@ -36,9 +36,14 @@ export default class FormValidator {
     }
   }
 
+  // toggleButtonState() {
+  //   const isFormValid = this._inputElements.every(
+  //     (inputEl) => inputEl.validity.valid && inputEl.value !== ""
+  //   );
+
   toggleButtonState() {
     const isFormValid = this._inputElements.every(
-      (inputEl) => inputEl.validity.valid && inputEl.value !== ""
+      (inputEl) => inputEl.validity.valid
     );
 
     if (isFormValid) {
@@ -52,7 +57,11 @@ export default class FormValidator {
   disableSubmitButton() {
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.disabled = true;
+    if (this._formEl.id === "modal-form-trash") {
+      this.toggleButtonState();
+    }
   }
+
   setEventListeners() {
     this._inputElements.forEach((inputEl) => {
       inputEl.addEventListener("input", () => {
